@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>USB Printer Test</title>
+    <style>
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .status {
+            margin: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>USB Printer Test</h1>
+        <button onclick="connectAndPrint()" id="printButton">Connect and Print</button>
+        <div id="status" class="status"></div>
+    </div>
+
+    <script>
+        async function connectAndPrint() {
+            const statusDiv = document.getElementById('status');
+            const printButton = document.getElementById('printButton');
+
+            try {
+                printButton.disabled = true;
+                statusDiv.textContent = "Requesting USB device...";
+                statusDiv.className = "status";
+
+                const device = await navigator.usb.requestDevice({ filters: [] });
+
+                statusDiv.textContent = "Opening device...";
+                await device.open();
+                await device.selectConfiguration(1);
+                await device.claimInterface(0);
+
+                statusDiv.textContent = "Sending print commands...";
+                const encoder = new TextEncoder();
+                const commands = [
+                    '\x1B\x40', // ESC @: Initialize printer
+                    'Hello, Direct World!\n',
+                    'This is a test.\n',
+                    '\x1D\x56\x42\x00', // GS V B: Cut paper
+                ];
+
+                const data = encoder.encode(commands.join(''));
+                const endpointNumber = device.configuration.interfaces[0].alternate.endpoints.find(e => e.direction === 'out').endpointNumber;
+                await device.transferOut(endpointNumber, data);
+
+                statusDiv.textContent = "Print command sent successfully!";
+                statusDiv.className = "status success";
+
+                await device.close();
+            } catch (error) {
+                statusDiv.textContent = "Error: " + error.message;
+                statusDiv.className = "status error";
+                console.error("WebUSB Error:", error);
+            } finally {
+                printButton.disabled = false;
+            }
+        }
+    </script>
+</body>
+
+</html>

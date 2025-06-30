@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
+    <channel>
+        <title>Duxbe Business</title>
+        <!-- Android Update -->
+        <item>
+            <title>1.0.7</title>
+            <description>Important updates and improvements. Please upgrade to continue using the
+                app.</description>
+            <pubDate>Sun, 01 Sep 2024 12:00:00 +0000</pubDate>
+            <sparkle:tags>
+                <sparkle:criticalUpdate />
+            </sparkle:tags>
+            <enclosure url="https://play.google.com/store/apps/details?id=com.hancod.duxbe.business"
+                sparkle:version="1.0.7" sparkle:os="android" />
+        </item>
+
+        <!-- iOS Update -->
+        <item>
+            <title>1.0.7</title>
+            <description>Important updates and improvements. Please upgrade to continue using the
+                app.</description>
+            <pubDate>Sun, 01 Sep 2024 12:00:00 +0000</pubDate>
+            <sparkle:tags>
+                <sparkle:criticalUpdate />
+            </sparkle:tags>
+            <enclosure url="https://apps.apple.com/in/app/duxbe-business/id6502827781"
+                sparkle:version="1.0.7" sparkle:os="ios" />
+        </item>
+    </channel>
+</rss>

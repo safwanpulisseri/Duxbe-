@@ -1,0 +1,83 @@
+{
+  "project_info": {
+    "project_number": "648584474232",
+    "firebase_url": "https://han-pos-demo-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "han-pos-demo",
+    "storage_bucket": "han-pos-demo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:648584474232:android:5917dc9dd0a561ac8d078d",
+        "android_client_info": {
+          "package_name": "com.duxbe.business"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "648584474232-o2a52fj5jqb8qkojrdo0j95a3uur3go4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwzNca6BjZXJcBOsT91z9M4uCypJCHsCo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "648584474232-o2a52fj5jqb8qkojrdo0j95a3uur3go4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "648584474232-4kmfjt6l02lkv9u98a2eop322610s7m0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.hanposMobile"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:648584474232:android:27bb58dfd628af088d078d",
+        "android_client_info": {
+          "package_name": "com.hancod.duxbe.business"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "648584474232-o2a52fj5jqb8qkojrdo0j95a3uur3go4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwzNca6BjZXJcBOsT91z9M4uCypJCHsCo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "648584474232-o2a52fj5jqb8qkojrdo0j95a3uur3go4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "648584474232-4kmfjt6l02lkv9u98a2eop322610s7m0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.hanposMobile"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

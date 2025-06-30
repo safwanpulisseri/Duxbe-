@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bluetooth Printer Test</title>
+    <style>
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .status {
+            margin: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Bluetooth Printer Test</h1>
+        <button onclick="connectAndPrintBluetooth()" id="printButton">Connect and Print</button>
+        <div id="status" class="status"></div>
+    </div>
+
+    <script>
+        async function connectAndPrintBluetooth() {
+            const statusDiv = document.getElementById('status');
+            const printButton = document.getElementById('printButton');
+
+            try {
+                printButton.disabled = true;
+                statusDiv.textContent = "Requesting Bluetooth device...";
+                statusDiv.className = "status";
+
+                const device = await navigator.bluetooth.requestDevice({
+                    // filters: [{ name: 'Thermal Printer' }],
+                    acceptAllDevices: true,
+                    optionalServices: ['00001101-0000-1000-8000-00805f9b34fb', '000018f0-0000-1000-8000-00805f9b34fb']
+                });
+
+                statusDiv.textContent = "Connecting to GATT Server...";
+                const server = await device.gatt.connect();
+
+                const services = await server.getPrimaryServices();
+                console.log('Available services:', services.map(s => s.uuid));
+
+                statusDiv.textContent = "Getting the Printer Service...";
+                const service = await server.getPrimaryService('000018f0-0000-1000-8000-00805f9b34fb');
+
+                statusDiv.textContent = "Getting characteristics...";
+                const characteristics = await service.getCharacteristics();
+                console.log('Available characteristics for printer service:', characteristics.map(c => ({ uuid: c.uuid, properties: c.properties })));
+
+                statusDiv.textContent = "Getting the Write Characteristic...";
+                // The characteristic UUID below ('00002af1-0000-1000-8000-00805f9b34fb') is used for writing data to the printer.
+                // This UUID is specific to certain Bluetooth thermal printers (often using the Feasycom or similar modules).
+                // 
+                // To find the correct characteristic UUID for your device:
+                // 1. Check the printer's documentation or technical manual for Bluetooth GATT service and characteristic UUIDs.
+                // 2. Use a Bluetooth scanning app (like nRF Connect for Android/iOS) to connect to your printer and inspect available services/characteristics.
+                // 3. Look for a characteristic with "Write" or "Write Without Response" property, as this is typically used for sending print data.
+                // 4. Replace the UUID below with the one matching your printer's write characteristic if different.
+                const characteristic = await service.getCharacteristic('00002af1-0000-1000-8000-00805f9b34fb');
+
+                statusDiv.textContent = "Preparing ESC/POS commands...";
+                const encoder = new TextEncoder();
+                const commands = [
+                    '\x1B\x40', // ESC @: Initialize printer
+                    '\x1B\x61\x01', // ESC a 1: Center alignment
+                    '\x1B\x21\x30', // ESC ! 0: Normal text
+                    '================================\n',
+                    '         COMPANY NAME\n',
+                    '        123 Business St\n',
+                    '        City, State 12345\n',
+                    '        Tel: (555) 123-4567\n',
+                    '================================\n',
+                    '\x1B\x21\x08', // ESC ! 8: Bold text
+                    'RECEIPT #: 12345\n',
+                    'DATE: 2024-03-20 14:30\n',
+                    'CASHIER: John Doe\n',
+                    '================================\n',
+                    '\x1B\x21\x00', // ESC ! 0: Normal text
+                    'ITEM                    QTY  PRICE\n',
+                    '--------------------------------\n',
+                    'Product 1                1   $10.00\n',
+                    'Product 2                2   $15.00\n',
+                    'Product 3                1   $20.00\n',
+                    '--------------------------------\n',
+                    '\x1B\x21\x08', // ESC ! 8: Bold text
+                    'SUBTOTAL:              $45.00\n',
+                    'TAX (10%):              $4.50\n',
+                    'TOTAL:                 $49.50\n',
+                    '--------------------------------\n',
+                    '\x1B\x21\x00', // ESC ! 0: Normal text
+                    'PAYMENT METHOD: CASH\n',
+                    'AMOUNT PAID:          $50.00\n',
+                    'CHANGE:                $0.50\n',
+                    '================================\n',
+                    '\x1B\x61\x00', // ESC a 0: Left alignment
+                    'Thank you for your purchase!\n',
+                    'Please come again.\n',
+                    '\x1B\x64\x05', // ESC d 5: Feed 5 lines
+                    '\x1D\x56\x42\x00', // GS V B: Cut paper
+                ];
+
+                const textData = encoder.encode(commands.join(''));
+
+                statusDiv.textContent = "Sending data to printer...";
+                // characteristic.writeValueWithoutResponse(textData)
+                await writeInChunks(characteristic, textData, 20);
+
+                statusDiv.textContent = "Print command sent successfully!";
+                statusDiv.className = "status success";
+
+            } catch (error) {
+                statusDiv.textContent = `Error: ${error.message}`;
+                statusDiv.className = "status error";
+            } finally {
+                printButton.disabled = false;
+            }
+        }
+
+        async function writeInChunks(characteristic, data, chunkSize) {
+            for (let i = 0; i < data.length; i += chunkSize) {
+                const chunk = data.slice(i, i + chunkSize);
+                await characteristic.writeValueWithoutResponse(chunk);
+            }
+        }
+    </script>
+</body>
+
+</html>

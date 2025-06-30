@@ -1,0 +1,32 @@
+{
+    "projects": {
+        "dev": "han-pos-demo",
+        "prod": "duxbe-application",
+        "stage": "duxbe-staging"
+    },
+    "targets": {
+        "duxbe-application": {
+            "hosting": {
+                "prod": [
+                    "prod-duxbe"
+                ]
+            }
+        },
+        "han-pos-demo": {
+            "hosting": {
+                "dev": [
+                    "dev-duxbe"
+                ]
+            }
+        },
+        "duxbe-staging": {
+            "hosting": {
+                "stage": [
+                    "stage-duxbe"
+                ]
+            }
+        }
+    },
+    "etags": {},
+    "dataconnectEmulatorConfig": {}
+}

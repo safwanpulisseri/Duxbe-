@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>ITSAppUsesNonExemptEncryption</key>
+		<false />
+		<key>GOOGLESERVICE_INFO_PLIST</key>
+		<string>${GOOGLESERVICE_INFO_PLIST}</string>
+		<key>CADisableMinimumFrameDurationOnPhone</key>
+		<true />
+		<key>CFBundleDevelopmentRegion</key>
+		<string>$(DEVELOPMENT_LANGUAGE)</string>
+		<key>CFBundleDisplayName</key>
+		<string>$(FLAVOR_APP_NAME)</string>
+		<key>CFBundleExecutable</key>
+		<string>$(EXECUTABLE_NAME)</string>
+		<key>CFBundleIdentifier</key>
+		<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+		<key>CFBundleInfoDictionaryVersion</key>
+		<string>6.0</string>
+		<key>CFBundleLocalizations</key>
+		<array>
+			<string>en</string>
+			<string>es</string>
+		</array>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>This app requires access to your photo library to allow you to upload images of
+			items, making it easier for you to manage your inventory and sales records efficiently.</string>
+		<key>NSCameraUsageDescription</key>
+		<string>This app requires access to your camera to enable you to take photos of items
+			directly, providing a convenient way to add visual details to your inventory and improve
+			item tracking.</string>
+		<key>CFBundleName</key>
+		<string>$(FLAVOR_APP_NAME)</string>
+		<key>CFBundlePackageType</key>
+		<string>APPL</string>
+		<key>CFBundleShortVersionString</key>
+		<string>$(FLUTTER_BUILD_NAME)</string>
+		<key>CFBundleSignature</key>
+		<string>????</string>
+		<key>CFBundleVersion</key>
+		<string>$(FLUTTER_BUILD_NUMBER)</string>
+		<key>LSRequiresIPhoneOS</key>
+		<true />
+		<key>UIApplicationSupportsIndirectInputEvents</key>
+		<true />
+		<key>UILaunchStoryboardName</key>
+		<string>LaunchScreen</string>
+		<key>UIMainStoryboardFile</key>
+		<string>Main</string>
+		<key>UISupportedInterfaceOrientations</key>
+		<array>
+			<string>UIInterfaceOrientationPortrait</string>
+			<string>UIInterfaceOrientationLandscapeLeft</string>
+			<string>UIInterfaceOrientationLandscapeRight</string>
+		</array>
+		<key>UISupportedInterfaceOrientations~ipad</key>
+		<array>
+			<string>UIInterfaceOrientationPortrait</string>
+			<string>UIInterfaceOrientationPortraitUpsideDown</string>
+			<string>UIInterfaceOrientationLandscapeLeft</string>
+			<string>UIInterfaceOrientationLandscapeRight</string>
+		</array>
+		<key>UIViewControllerBasedStatusBarAppearance</key>
+		<false />
+		<key>CFBundleURLTypes</key>
+		<array>
+			<dict>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>fb760508759293726</string>
+				</array>
+			</dict>
+		</array>
+		<key>FacebookAppID</key>
+		<string>760508759293726</string>
+		<key>FacebookClientToken</key>
+		<string>bb9295ad300091e81d854d43d0ee0b5d</string>
+		<key>FacebookDisplayName</key>
+		<string>Duxbe Business</string>
+		<key>NSBluetoothAlwaysUsageDescription</key>
+		<string>Allow App use bluetooth to print receipts</string>
+		<key>NSBluetoothPeripheralUsageDescription</key>
+		<string>Allow App use bluetooth to print receipts</string>
+		<key>UIBackgroundModes</key>
+		<array>
+			<string>bluetooth-central</string>
+			<string>bluetooth-peripheral</string>
+		</array>
+	</dict>
+</plist>

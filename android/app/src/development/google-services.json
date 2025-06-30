@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "648584474232",
+    "project_id": "han-pos-demo",
+    "storage_bucket": "han-pos-demo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:648584474232:android:ccee636d9e174e758d078d",
+        "android_client_info": {
+          "package_name": "com.hancod.duxbe.business.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwzNca6BjZXJcBOsT91z9M4uCypJCHsCo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
